@@ -1,0 +1,51 @@
+name: Apply Lint and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  apply_lint_and_test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install Rye
+        run: ./setup-rye.sh
+      - name: Load cached venv
+        id: cache_dependency_python
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/requirements-dev.lock') }}
+      - name: Install python module
+        if: ${{ steps.cache_dependency_python.outputs.cache-hit != 'true' }}
+        run: |
+          source "$HOME/.rye/env"
+          rye sync
+      - name: Run pre-commit
+        run: |
+          source "$HOME/.rye/env"
+          rye run pre-commit install
+          rye run pre-commit run --all-files
+      - name: Auto Commit
+        if: ${{ always() }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Apply Code Formatter Change
+          commit_options: '--no-verify'
+      - name: Pytest
+        run: |
+          source "$HOME/.rye/env"
+          rye run pytest -sv tests

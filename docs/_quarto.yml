@@ -1,0 +1,59 @@
+project:
+  title: "python_research_software_templete"
+  type: website
+  render:
+    - "*.qmd"
+
+metadata-files:
+  - api/_sidebar.yml
+
+publish:
+  provider: gh-pages
+
+website:
+  title: "python_research_software_templete"
+  page-navigation: true
+  navbar:
+    left:
+      - file: index.qmd
+        text: Overview
+      - href: api/
+        text: Reference
+    tools:
+    - icon: github
+      menu:
+        - text: Source Code
+          href: https://github.com/wakabame/python_research_software_templete
+  sidebar:
+    - id: get-started
+      title: Get Started
+      style: floating
+      align: left
+      contents:
+        - index.qmd
+        - section: "Docs"
+          contents:
+            - python_research_software_templete.qmd
+        - section: "API reference"
+          contents: "api/*"
+        - section: "Notebooks"
+          contents: "notebook/*"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+quartodoc:
+  style: pkgdown
+  parser: numpy
+  package: python_research_software_templete
+  dir: api
+  sidebar: "api/_sidebar.yml"
+
+  sections:
+    - title: sample
+      desc: ""
+      contents:
+        - sample.sample_add_int

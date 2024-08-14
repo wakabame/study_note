@@ -1,0 +1,53 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install Rye
+        run: ./setup-rye.sh
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.4.549
+      - name: Load cached venv
+        id: cache_dependency_python
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/requirements-dev.lock') }}
+      - name: Install python module
+        if: ${{ steps.cache_dependency_python.outputs.cache-hit != 'true' }}
+        run: |
+          source "$HOME/.rye/env"
+          rye sync
+      - name: Build Docs
+        run: |
+          source "$HOME/.rye/env"
+          rye run quartodoc build --config docs/_quarto.yml
+          find notebook/ -name "*.ipynb" | xargs -I {} basename {} .ipynb | xargs -I {} quarto convert "notebook/{}.ipynb" --output "docs/notebook/{}.qmd"
+          quarto render docs
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs/_site
+
+  deploy:
+    needs: build
+    permissions:
+      id-token: write
+      pages: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
