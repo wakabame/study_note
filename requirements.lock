@@ -19,11 +19,11 @@ fonttools==4.53.1
 kiwisolver==1.4.5
     # via matplotlib
 matplotlib==3.9.1
-    # via python-research-software-templete
+    # via study-note
 numpy==2.0.1
     # via contourpy
     # via matplotlib
-    # via python-research-software-templete
+    # via study-note
 packaging==24.1
     # via matplotlib
 pillow==10.4.0
