@@ -1,4 +1,8 @@
-# python_research_software_templete
+# 勉強ノート
+
+数学+プログラミング的な領域の勉強をまとめています
+
+<https://wakabame.github.io/study_note/> にホスティングしています
 
 Rye + uv でのプロジェクト管理
 GitHub Actions でのCI

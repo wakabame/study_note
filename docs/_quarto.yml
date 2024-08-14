@@ -1,5 +1,5 @@
 project:
-  title: "python_research_software_templete"
+  title: "勉強ノート"
   type: website
   render:
     - "*.qmd"
@@ -11,7 +11,7 @@ publish:
   provider: gh-pages
 
 website:
-  title: "python_research_software_templete"
+  title: "勉強ノート"
   page-navigation: true
   navbar:
     left:
@@ -23,7 +23,7 @@ website:
     - icon: github
       menu:
         - text: Source Code
-          href: https://github.com/wakabame/python_research_software_templete
+          href: https://github.com/wakabame/study_note
   sidebar:
     - id: get-started
       title: Get Started

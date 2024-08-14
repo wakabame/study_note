@@ -1,5 +1,5 @@
 [project]
-name = "python_research_software_templete"
+name = "study_note"
 version = "0.1.0"
 description = "Add your description here"
 authors = [
@@ -31,7 +31,7 @@ dev-dependencies = [
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["python_project_templete"]
+packages = ["study_note"]
 
 [tool.ruff]
 line-length = 120
