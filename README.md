@@ -25,3 +25,9 @@ Rye のインストール <https://rye.astral.sh/guide/installation/>
 ```sh
 sh ./setup-rye.sh
 ```
+
+Rye の起動
+
+```sh
+. .venv/bin/activate
+```
