@@ -33,7 +33,7 @@ website:
         - index.qmd
         - section: "Docs"
           contents:
-            - python_research_software_templete.qmd
+            - study_note.qmd
         - section: "API reference"
           contents: "api/*"
         - section: "Notebooks"
@@ -48,7 +48,7 @@ format:
 quartodoc:
   style: pkgdown
   parser: numpy
-  package: python_research_software_templete
+  package: study_note
   dir: api
   sidebar: "api/_sidebar.yml"
 
