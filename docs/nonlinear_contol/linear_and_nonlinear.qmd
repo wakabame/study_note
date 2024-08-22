@@ -1,0 +1,52 @@
+---
+title: "離散と連続の対応関係"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+## もっともシンプルなケース
+
+* モデル
+    * $x(k+1) = f(x(k), u(k)m ,k), \quad k=0,1,\cdots, N$
+    * $\dot{x}(t) = f(x(t), u(t), t), \quad t\in [t_0, t_f]$
+* 評価関数
+    * $J = \varphi(x(N)) + \sum_{k=0}^{N-1} L(x(k), u(k), k)$
+    * $J = \varphi(x(t_f)) + \int_{t_0}^{t_f} L(x(t), u(t), t)\, dt$
+* ハミルトニアン
+    * $H(x,y,\lambda,k) = L(x,u,k)+\lambda^T f(x,u,k)$
+    * $H(x,y,\lambda,t) = L(x,u,t)+\lambda^T f(x,u,t)$
+* オイラー・ラグランジュ方程式（最適制御の必要条件）
+    * $$\begin{align*}
+    x(k+1) = f(x(k), u(k), k),\quad x(0)=x_0\\
+    \lambda(k) = \left(\dfrac{\partial H}{\partial x}\right)^T (x(k), u(k), \lambda(k+1), k), \quad \lambda(N) =  \left(\dfrac{\partial \varphi}{\partial x}\right)^T (x(N))\end{align*}\\
+    \dfrac{\partial H}{\partial u}(x(k), u(k), \lambda(k+1), k)0.$$
+* 動的計画法
+    * 値関数
+    * ベルマン方程式（（値関数が存在すれば）最適制御の十分条件）
+* ベルマン方程式からオイラー・ラグランジュ方程式の導出
+
+
+## LQ 制御モデルの場合
+
+* モデル
+* 評価関数
+* オイラー・ラグランジュ方程式
+    * リッカチ方程式
+* 動的計画法
+    * 値関数
+    * ベルマン方程式（（値関数が存在すれば）最適制御の十分条件）
+
+## 他のモデル
+
+0. 初期条件固定(さっき上げたやつ)
+1. 終端条件固定($x(N)$, $x(t_f)$ を固定する)
+    1. 随伴変数の終端条件なくなる
+1. 初期状態自由
+    1. 随伴変数に初期条件が課される
+1. 等式拘束条件$C(x(k), u(k), k)=0$
+    1. $C$ 同じ次元のラグランジュ乗数$/rho $を導入し、ハミルトニアンを$H(x,u,\lambda, \rho,k) = L(x,u,k) + \lambda^T f(x,u,k) + \rho^TC(x,u,k)$ としてオイラー・ラグランジュ方程式を導出すると, $[u^T, \rho^T]^T$ を入力とした停留条件を得る
+1. 終端時刻自由
+    1. 離散の場合: 各$N$ について評価関数$J_N$を求め, $N$ に関して最小値を探索する
+    1. 連続の場合

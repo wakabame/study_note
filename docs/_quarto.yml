@@ -31,9 +31,9 @@ website:
       align: left
       contents:
         - index.qmd
-        - section: "Docs"
+        - section: "非線形最適化入門"
           contents:
-            - study_note.qmd
+            - nonlinear_contol/*.qmd
         - section: "API reference"
           contents: "api/*"
         - section: "Notebooks"
