@@ -20,14 +20,15 @@ jupyter: python3
 * オイラー・ラグランジュ方程式（最適制御の必要条件）
     * 
     $$
-    \begin{align*}
+    \begin{cases}
     x(k+1) = f(x(k), u(k), k),
     \quad x(0)=x_0, \\
     \lambda(k) = \left(\dfrac{\partial H}{\partial x}\right)^T (x(k), u(k), \lambda(k+1), k), 
     \quad \lambda(N) =  \left(\dfrac{\partial \varphi}{\partial x}\right)^T (x(N)), \\
-    \dfrac{\partial H}{\partial u}(x(k), u(k), \lambda(k+1), k).
-    \end{align*}
+    \dfrac{\partial H}{\partial u}(x(k), u(k), \lambda(k+1), k)=0.
+    \end{cases}
     $$
+
 * 動的計画法
     * 値関数
     * ベルマン方程式（（値関数が存在すれば）最適制御の十分条件）
