@@ -8,3 +8,74 @@ date: 2024-08-23
 date-modified: 2024-08-23
 chapter: 3
 ---
+
+記述をシンプルにするため, 変数の属する次元や添字の範囲は省略する.
+与えられる関数は適宜滑らかさを課す.
+ときどき思い出したように状態ベクトル $x$, 制御ベクトル $u$ の次元はそれぞれ $n,m$ であることを用いる.
+
+終端時刻を自然数 $N$ と書き, 時刻を表す変数 $k=0,\cdots, N$ に対して, 以下の離散制御システムを考える;
+
+$$ x(k+1) = f(x(k),u(k),k)$$
+
+ここで $x(k), u(k)$ はそれぞれ時刻 $k=0,\cdots, N$ におけるシステムの状態ベクトル, 制御入力ベクトルを表す.
+
+このシステムに対して, 初期状態 $x(0) = x_0$ が固定されたときの評価関数
+
+$$
+J(x, u) = \varphi(x(N)) + \sum_{k=0}^{N-1} L(x(k), u(k), k)
+$$
+
+を最小化するような制御入力 $\{u(k)\}_{k=0}^{N-1}$ を構成したい($u(N)$ の値は評価関数には影響しないので, $k=N-1$ までで十分である).
+
+差分方程式を等式拘束条件とみなすと, 最小化問題のラグランジュ関数はラグランジュ乗数 $\{\lambda(k)\}_{k=1}^N$ を用いて
+
+$$\begin{aligned}
+\bar{J}(x,u)
+&= \varphi(x(N)) - \lambda^T(N)x(N) \\
+&\quad + \sum_{k=1}^{N-1}(H(x(k), u(k), \lambda(k+1), k)-\lambda^T(k)x(k))\\
+&\quad + H(x(0), u(0),\lambda(1),0)
+\end{aligned}$$
+
+と表せる. ただしここに現れた関数 $H(x,u,\lambda,k) := L(x,u,k) +\lambda^Tf(x,u,k)$ をハミルトニアンといい, 
+以下では $H(k) = H(x(k), u(k), \lambda(k+1),k)$ と略記する. 
+
+初期条件 $x(0)=x_0$ が拘束されているため, $\bar{J}$ は $(x, u)\in ({x_0}\times (\mathbf{R}^{n})^{(N-1)})\times (\mathbf{R}^{m})^N$ を定義域に持つ関数である.
+
+最小化問題の必要条件となる $\bar{J}$ の停留条件を求めよう. 
+方向ベクトル $(y, v)\in ({0}\times (\mathbf{R}^{n})^{(N-1)})\times (\mathbf{R}^{m})^N$ とパラメータ $h>0$ を用いると
+
+$$\begin{aligned}
+&\bar{J}(x+hy,u+hv) - \bar{J}(x,u)\\
+&\quad= \varphi(x(N)+hy(N)) - \varphi(x(N)) - h\lambda^T(N)y(N)\\
+&\qquad + \sum_{k=1}^{N-1}(H(x(k)+hy(k), u(k)+hv(k), \lambda(k+1), k) - H(x(k), u(k), \lambda(k+1), k)-h\lambda^T(k)y(k))\\
+&\qquad + H(x(0), u(0)+hv(0),\lambda(1),0) -H(x(0), u(0),\lambda(1),0)
+\end{aligned}$$
+
+と表せる. ハミルトニアン $H$ やコスト関数 $\varphi$ の微分を用いると, ラグランジュ関数の方向微分は
+
+$$\begin{aligned}
+d\bar{J}((x,u);(y,v))
+&= \left(\dfrac{\partial \varphi}{\partial x}(x(N))-\lambda^T(N)\right) y(N)\\
+&\quad + \sum_{k=1}^{N-1}\left(\dfrac{\partial H}{\partial x}(k) - \lambda^T(k)\right)y(k)
++ \sum_{k=1}^{N-1}\dfrac{\partial H}{\partial u} v(k)\\
+&\quad + \dfrac{\partial H}{\partial u}v(0)
+\end{aligned}$$
+
+と表せる. これにより, 停留条件として以下のオイラー・ラグランジュ方程式が得られる
+
+$$
+\begin{cases}
+x(k+1) = f(x(k), u(k), k),
+\quad x(0)=x_0, \\
+\lambda(k) = \left(\dfrac{\partial H}{\partial x}\right)^T (x(k), u(k), \lambda(k+1), k), 
+\quad \lambda(N) =  \left(\dfrac{\partial \varphi}{\partial x}\right)^T (x(N)), \\
+\dfrac{\partial H}{\partial u}(x(k), u(k), \lambda(k+1), k)=0.
+\end{cases}
+$$
+
+ここで, ハミルトニアンの定義から状態方程式は
+$$
+x(k+1) = \left(\dfrac{\partial H}{\partial \lambda}\right)^T (x(k), u(k), \lambda(k+1), k)
+$$
+とも表せるため, 上で得られた状態方程式は解析力学での正準方程式に似ている(随伴変数 $\lambda$ の式にマイナスがつかないのは, 時間逆向きの差分方程式となっているため).
+
