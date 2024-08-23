@@ -1,0 +1,15 @@
+/* ブロック数式の背景色 */
+.katex-display {
+    background-color: #f0f0f0;  /* 希望の色に変更 */
+    padding: 10px;
+    border: 2px solid #cccccc;  /* ボーダー色と幅 */
+    border-radius: 10px;  /* 角を丸める */
+    overflow-x: auto;  /* 横方向にスクロール可能にする */
+    white-space: nowrap;  /* 数式を折り返さない */
+}
+
+/* インライン数式の背景色 */
+.katex {
+    padding: 2px 5px;
+    border-radius: 3px;
+}
