@@ -6,6 +6,7 @@ format:
 jupyter: python3
 date: 2024-08-23
 date-modified: 2024-08-23
+chapter: 9
 ---
 
 ## もっともシンプルなケース
