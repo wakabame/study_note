@@ -1,0 +1,7 @@
+---
+title: "離散時間システムの最適制御"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
