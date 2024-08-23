@@ -26,8 +26,10 @@ Rye のインストール <https://rye.astral.sh/guide/installation/>
 sh ./setup-rye.sh
 ```
 
-Rye の起動
+## 開発環境でのプレビュー
 
 ```sh
 . .venv/bin/activate
+quarto preview docs
+# localhost にプレビューが作成されるので, ブラウザからアクセスする
 ```
