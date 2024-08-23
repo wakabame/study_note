@@ -31,7 +31,8 @@ website:
       align: left
       contents:
         - index.qmd
-        - section: "非線形最適化入門"
+        - text: "非線形最適制御入門"
+          href: "nonlinear_contol/index.html"
           contents:
             - "nonlinear_contol/discrete.qmd"
             - "nonlinear_contol/discrete_and_continuous.qmd"
