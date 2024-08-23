@@ -10,10 +10,8 @@ listing:
   contents: "./*"
   sort: "chapter"
   type: table
-  field-display-names:
-    title: "Chapter"
   date-format: iso
-  fields: [title, date]
+  fields: [chapter, title, date]
 ---
 
 モデル予測制御の理論的側面を学ぶために読み始めた.
