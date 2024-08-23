@@ -16,9 +16,9 @@ website:
   navbar:
     left:
       - file: index.qmd
-        text: Overview
-      - href: api/
-        text: Reference
+        text: Top Page
+      # - href: api/
+      #   text: Reference
     tools:
     - icon: github
       menu:
@@ -36,10 +36,10 @@ website:
           contents:
             - "nonlinear_contol/discrete.qmd"
             - "nonlinear_contol/discrete_and_continuous.qmd"
-        - section: "Function Reference"
-          contents: "api/*"
-        - section: "Notebooks"
-          contents: "notebook/*"
+        # - section: "Function Reference"
+        #   contents: "api/*"
+        # - section: "Notebooks"
+        #   contents: "notebook/*"
 
 format:
   html:
