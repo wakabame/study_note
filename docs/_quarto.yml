@@ -36,7 +36,7 @@ website:
           contents:
             - "nonlinear_contol/discrete.qmd"
             - "nonlinear_contol/discrete_and_continuous.qmd"
-        - section: "API reference"
+        - section: "Function Reference"
           contents: "api/*"
         - section: "Notebooks"
           contents: "notebook/*"
