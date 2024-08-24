@@ -5,7 +5,7 @@ format:
     code-fold: true
 jupyter: python3
 date: 2024-08-23
-date-modified: 2024-08-23
+date-modified: 2024-08-25
 chapter: 3
 ---
 
@@ -94,6 +94,102 @@ $$
 ## ベルマン方程式の導出
 
 ## ベルマン方程式からのオイラー・ラグランジュ方程式の導出
+
+ベルマン方程式
+$$\begin{aligned}
+V(x,k)
+&= \min_{u}\left(L(x,u,k)+ V(f(x,u,k), k+1)\right), \quad & x\in \mathbf{R}^n, k=0,\cdots N-1,\\
+V(x,N) 
+&= \varphi(x), \quad & x\in \mathbf{R}^n
+\end{aligned}$$
+
+が任意の $x$, $k$ に対して解けたとし, $u_{\mathrm{opt}}(x,k)$ を optimizer とする.
+さらに, $\bar{x}$ を, 制御入力 $\bar{u}(k) = u_{\mathrm{opt}}(\bar{x(k)},k)$ としたときの閉ループシステムの状態ベクトルとする. すなわち, 次のように構成する;
+
+$$\begin{aligned}
+& \bar{x}(0) = x_0\\
+& \bar{u}(k) = u_{\mathrm{opt}}(\bar{x}(k), k), \quad & k=0,\cdots N,\\
+& \bar{x}(k+1) = f(\bar{x}(k), \bar{u}(k), k), \quad & k=0,\cdots N-1.
+\end{aligned}$$
+
+このとき, $(\bar{x}, \bar{u})$ はオイラー・ラグランジュ方程式の解となることを見ていこう.
+
+そのためには,  $(\bar{x}, \bar{u})$ はオイラー・ラグランジュ方程式の状態方程式を満たすことは明らかなので, 随伴方程式を満たす $\bar{\lambda}$ を構成し, 拘束条件を満たすことを確かめれば良い.
+
+まず, 任意の $x, k=0,\cdots, N-1$ について,
+
+$$\begin{aligned}
+\alpha(x, k)
+& := -V(x,k) + L(x,\bar{u}(k), k) + (f(x,\bar{u}(k),k), k+1)\\
+& \ge -V(x,k) + \min_{u}\left(L(x,u, k) + (f(x,u, k+1), k )\right)\\
+&= 0
+\end{aligned}$$
+
+が値関数であることから従う. さらに, ベルマン方程式から $\alpha(\bar{x}(k),k)=0$ を満たすので, 
+
+
+$$\begin{aligned}
+0 &= \left.\dfrac{\partial \alpha}{\partial x}(x,k)\right|_{x=\bar{x}(k)}\\
+&= - \dfrac{\partial V}{\partial x}(\bar{x}(k), k)
+    + \dfrac{\partial L}{\partial x}(\bar{x}(k), \bar{u}(k), k)
+    + \dfrac{\partial V}{\partial x}(f(\bar{x}(k), \bar{u}(k),k), k+1)
+    \dfrac{\partial f}{\partial x}(\bar{x}(k), \bar{u}(k), k)\\
+&= - \dfrac{\partial V}{\partial x}(\bar{x}(k), k)
+    + \dfrac{\partial L}{\partial x}(\bar{x}(k), \bar{u}(k), k)
+    + \dfrac{\partial V}{\partial x}(\bar{x}(k+1), k+1)
+    \dfrac{\partial f}{\partial x}(\bar{x}(k), \bar{u}(k), k)\\
+&= - \dfrac{\partial V}{\partial x}(\bar{x}(k), k)
+ + \dfrac{\partial H}{\partial x}
+   \left(
+    \bar{x}(k), \bar{u}(k), \left(\dfrac{\partial V}{\partial x}\right)^T(\bar{x}(k+1), k+1), k
+   \right)
+\end{aligned}$$
+
+が成り立つ. さらに, ベルマン方程式の終端条件により,
+
+$$
+\dfrac{\partial V}{\partial x}(\bar{x}(N), N) = \dfrac{\partial \varphi}{\partial x}(\bar{x}(N))
+$$
+
+も成り立つ. 以上を2式を合わせると,
+
+$$
+\bar{\lambda}(k) = \dfrac{\partial V}{\partial x}(\bar{x}(k), k), \quad k= 0, \cdots N
+$$
+
+と定めれば, オイラー・ラグランジュ方程式の随伴方程式を満たす.
+
+さらに, ベルマン方程式を再び用いることで, 任意の $u, k=0,\cdots, N$ について,
+
+$$\begin{aligned}
+\beta(u, k)
+& := L(\bar{x}(k),u, k) + (f(\bar{x}(k),u,k), k+1)\\
+& \ge L(\bar{x}(k), \bar{u}(k), k) + (f(\bar{x}(k),\bar{u}(k),k), k+1)\\
+&= 0
+\end{aligned}$$
+
+を定めると, $\beta(\cdot, k)$ は $\bar{u}(k)$ で最小値を取ることから
+
+$$\begin{aligned}
+0 &= \left.\dfrac{\partial \beta}{\partial u}(x,k)\right|_{u=\bar{u}(k)}\\
+&= \dfrac{\partial L}{\partial u}(\bar{x}(k), \bar{u}(k), k)
+    + \dfrac{\partial V}{\partial u}(f(\bar{x}(k), \bar{u}(k),k), k+1)
+    \dfrac{\partial f}{\partial u}(\bar{x}(k), \bar{u}(k), k)\\
+&= \dfrac{\partial L}{\partial u}(\bar{x}(k), \bar{u}(k), k)
+    + \dfrac{\partial V}{\partial u}(\bar{x}(k+1), k+1)
+    \dfrac{\partial f}{\partial u}(\bar{x}(k), \bar{u}(k), k)\\
+&= \dfrac{\partial H}{\partial u}
+   \left(
+    \bar{x}(k), \bar{u}(k), \left(\dfrac{\partial V}{\partial x}\right)^T(\bar{x}(k+1), k+1), k
+   \right)\\
+&= \dfrac{\partial H}{\partial u}
+   \left(
+    \bar{x}(k), \bar{u}(k), \bar{\lambda}(k+1), k
+   \right)
+\end{aligned}$$
+
+が成り立つ.
+以上により, $(\bar{x},\bar{\lambda},\bar{u})$ はオイラー・ラグランジュ方程式の解である.
 
 ## 数値解法
 
