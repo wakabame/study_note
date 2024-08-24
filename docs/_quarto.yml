@@ -50,6 +50,7 @@ format:
     classoption: fleqn
     grid:
       body-width: 1200px
+    date-format: iso
 
 quartodoc:
   style: pkgdown

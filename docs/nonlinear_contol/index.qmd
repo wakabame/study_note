@@ -10,7 +10,6 @@ listing:
   contents: "./*"
   sort: "chapter"
   type: table
-  date-format: iso
   fields: [chapter, title, date]
 ---
 

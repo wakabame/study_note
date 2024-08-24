@@ -10,7 +10,6 @@ listing:
   sort: "date desc"
   type: table
   fields: [title, date, date-modified]
-  date-format: iso
 ---
 
 読んだ書籍や論文の感想をアウトプットするためのサイト
