@@ -1,0 +1,50 @@
+---
+title: "二次形式は実対称行列を用いて表せる"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+date: 2024-08-25
+date-modified: 2024-08-25
+---
+
+## 重要な等式
+
+ベクトル$x\in \mathbf{R}^n$, と$n$次の正方行列$A$について,
+
+$$
+x^T Ax = x^T A^Tx
+$$
+
+が成り立つ. 実際, ベクトル$x$の第$i$成分を$x_i$と表し, 行列$A$の第$ij$成分を$A_{ij}$と表すことにすると,
+
+$$\begin{aligned}
+x^T Ax
+&= \sum_{i=1}^n x_i (Ax)_i\\
+&= \sum_{i=1}^n x_i \sum_{j=1}^n A_{ij}x_j\\
+&= \sum_{i,j=1}^n A_{ij}x_i x_j,\\
+x^T Ax
+&= \sum_{i=1}^n x_i (A^Tx)_i\\
+&= \sum_{i=1}^n x_i \sum_{j=1}^n A_{ji}x_j\\
+&= \sum_{i,j=1}^n A_{ji}x_i x_j
+\end{aligned}$$
+
+により, 常に一致する.
+以上に寄り, 任意の二次形式は対称行列$S$を用いて$x^T Sx$と表せる.
+仮に与えられた行列が対象ではない場合にも
+
+$$
+A = \dfrac{A+A^T}{2}
+$$
+
+とあらかじめ置き直すことで, 一般性を失わない.
+
+## 二次形式の微分
+
+$f(x)=x^T Ax$ について, その微分は
+
+$$
+\dfrac{\partial f}{\partial x} = 2Ax
+$$
+
+となる. ここで, 左辺の微分は多変数関数の勾配を表す.
