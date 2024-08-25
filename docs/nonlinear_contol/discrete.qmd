@@ -5,7 +5,7 @@ format:
     code-fold: true
 jupyter: python3
 date: 2024-08-23
-date-modified: 2024-08-25
+date-modified: 2024-08-26
 chapter: 3
 ---
 
@@ -92,6 +92,65 @@ $$
 拘束条件 $\frac{\partial H}{\partial u}(x(k), u(k), \lambda(k+1), k)=0$ は $H$ のヘッセ行列 $\frac{\partial^2 H}{\partial u^2}$ が正則であれば $u(k)$ について解け, これを用いて $x(k), \lambda(k)$ について反復法により解くことができる.
 
 ## ベルマン方程式の導出
+
+まず, $x_k\in \mathbf{R}^n, k=0,\cdots, N$ について, $x(k)=x_k, x(k+1)=f(x(k), u(k),k)$ となるようにする. 
+このとき, 値関数 $V(x,k)$ を次のように定める:
+
+$$
+V(x_k,k) = \min_{\{u(\ell)\}_{\ell=k}^{N-1}}
+\left(
+    \varphi(x(N)) + \sum_{\ell=k}^{N-1}L(x(\ell), u(\ell), \ell)
+\right).
+$$
+
+これは $x(k)=x_k$ 以降の評価関数の最小値と, その最小値を達成する $\{u(\ell)\}_{\ell=k}^{N-1}$ を求める最小化問題である.
+ここでは簡単のため, 最小値は達成されるものとする.
+以下のことは直ちに分かる;
+$$\begin{aligned}
+V(x_0,0)
+&= \min_{x,u} J(x,u),\\
+V(x_N, N)
+&= \varphi(x_N), \quad & x_N\in \mathbf{R}^n
+\end{aligned}$$
+
+さらに, 値関数の右辺のうち $L(x(k), u(k), k)$ はそれ以降の入力には依存しないことに注意すると
+$$\begin{aligned}
+V(x_k,k) 
+&= \min_{\{u(\ell)\}_{\ell=k}^{N-1}}
+\left(
+    L(x(k), u(k), k) + \varphi(x(N)) + \sum_{\ell=k+1}^{N-1}L(x(\ell), u(\ell), \ell)
+\right)\\
+&= \min_{u(k)}
+\left(
+    L(x(k), u(k), k) +\min_{\{u(\ell)\}_{\ell=k+1}^{N-1}}
+\left(
+         \varphi(x(N)) + \sum_{\ell=k+1}^{N-1}L(x(\ell), u(\ell), \ell)
+\right)
+\right)\\
+&= \min_{u(k)}
+\left(
+    L(x_k, u(k), k) + V(f(x_k,u(k),k),k+1)
+\right)
+\end{aligned}$$
+
+となる. これより, 値関数は
+
+$$\begin{aligned}
+V(x,k) 
+&= \min_{u}
+\left(
+    L(x, u, k) + V(f(x,u,k),k+1)
+\right), \quad & x\in \mathbf{R}^n, k=0,\cdots, N-1,\\
+V(x, N)
+&= \varphi(x), \quad & x\in \mathbf{R}^n
+\end{aligned}$$
+
+という後ろ向きの漸化式の解となる.
+この漸化式をベルマン方程式と呼び, このように評価関数の最小値を再帰的に表す手法を動的計画法と言う.
+
+以上により, 値関数が存在すれば, ベルマン方程式が成り立つことが分かる.
+
+逆に, ベルマン方程式が解けた場合, つまり値関数 $V(x,k)$ と optimizer $u_{\mathrm{opt}}(x,k)$ が得られた場合, $\bar{x}(k+1) = f(\bar{x}(k), u_{\mathrm{opt}}(x(k),k), k)$ という閉ループフィードバック制御によって最適制御を構成できることが値関数の定義からわかる.
 
 ## ベルマン方程式からのオイラー・ラグランジュ方程式の導出
 
