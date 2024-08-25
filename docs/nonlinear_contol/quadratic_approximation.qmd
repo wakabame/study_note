@@ -1,0 +1,42 @@
+---
+title: "多変数関数の二次近似"
+format:
+  html:
+    code-fold: true
+jupyter: python3
+date: 2024-08-25
+date-modified: 2024-08-25
+---
+
+関数$f\in C(\mathbf{R}^n:\mathbf{R}^n)$とする. 
+多変数のテイラー展開により, 任意の$x,y\in\mathbf{R}^n$について
+
+$$
+f(x+hy) - f(x) = h \dfrac{\partial f}{\partial x}y 
++\dfrac{h^2}{2}y^T \dfrac{\partial f}{\partial x}y 
++ o(|h|^2),\quad h\rightarrow 0
+$$
+
+が成り立つ.
+
+これは多変数関数のテイラー展開だが, 二次変分を算出するのによく使う.
+しかしベクトルなのと転置記号${}^T$を用いるので面食らいがち.
+
+$n=2$の場合に示そう. 多重指数 $\alpha= (\alpha_1, \alpha_2)\in \mathbf{N}^2$に対する偏導関数を
+
+$$
+D^\alpha f=\dfrac{\partial^{\alpha_1+ \alpha_2}f}{\partial {x_1}^{\alpha_1} \partial {x_2}^{\alpha_2}} 
+$$
+
+と表し, $x^\alpha = {x_1}^{\alpha_1} {x_2}^{\alpha_2}$ と表すことにすると, テイラー展開から
+
+$$\begin{aligned}
+f(x+hy) 
+&= \sum_{|\alpha| \le 2} \dfrac{D^\alpha f(x)}{|\alpha|!}(hy)^\alpha + o(|h|^2)\\
+&= f(x) 
+  + h\left(\dfrac{\partial f(x)}{\partial x_1}y_1+\dfrac{\partial f(x)}{\partial x_2}y_2 \right)
+  + \dfrac{h^2}{2}\left(\dfrac{\partial^2 f(x)}{\partial x_1^2}y_1^2+2\dfrac{\partial^2 f(x)}{\partial x_1\partial x_2}(y_1y_2) +\dfrac{\partial^2 f(x)}{\partial x_2^2}y_2^2 \right)
+  + o(|h|^2)
+\end{aligned}$$
+
+を得る. ベクトル $y$ についてまとめ直すと, 目的の表式となる.
