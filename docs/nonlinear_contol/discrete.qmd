@@ -69,15 +69,13 @@ d\bar{J}((x,u);(y,v))
 
 と表せる. これにより, 停留条件として以下のオイラー・ラグランジュ方程式が得られる
 
-$$
-\begin{cases}
+$$\begin{aligned}
 x(k+1) = f(x(k), u(k), k),
 \quad x(0)=x_0, \\
 \lambda(k) = \left(\dfrac{\partial H}{\partial x}\right)^T (x(k), u(k), \lambda(k+1), k), 
 \quad \lambda(N) =  \left(\dfrac{\partial \varphi}{\partial x}\right)^T (x(N)), \\
 \dfrac{\partial H}{\partial u}(x(k), u(k), \lambda(k+1), k)=0.
-\end{cases}
-$$
+\end{aligned}$$
 
 ここで, ハミルトニアンの定義から状態方程式は
 
@@ -253,5 +251,93 @@ $$\begin{aligned}
 ## 数値解法
 
 # 離散LQ制御問題
+
+システムは次のような線形システム
+
+$$ x(k+1) = Ax(k) + B u(k)$$
+
+を仮定し, 評価関数は次の二次形式で与えられるものとする
+
+$$
+J=\dfrac12 x^T Sx(N) + \sum_{k=1}^{N-1}\dfrac12\left(x^T(k)Qx(k) + u^T(k)Ru(k)\right).
+$$
+
+ただし簡単のため $S_f, Q, R$は対称行列とし, 特に$R$は正定値とする. 
+
+## オイラー・ラグランジュ方程式
+
+ハミルトニアンは時間には依存せず$H(x,u,\lambda) = \frac12(x^TQx + u^TRu)+ \lambda^T(Ax+Bu)$となるのでオイラー・ラグランジュ方程式は
+
+$$\begin{align}
+&x(k+1) = Ax(k) + Bu(k),
+\quad x(0)=x_0, \\
+&\lambda(k) =Qx(k)+A^T \lambda(k+1) , 
+\quad \lambda(N) =  S_f (x(N)), \\
+&u^T(k)R + \lambda^T(k+1)B=0.
+\end{align}$$
+
+となる. ここで, 関係式$\lambda(k)=S(k)x(k)$を代入して$S(k)$の条件を求めると
+
+$$\begin{align}
+S(k)
+&=Q+A^TS(k+1)A\\
+&\quad - A^TS(k+1)B(R+B^TS(k+1)B)^{-1}B^TS(k+1)A,\quad k=1,cdots, N-1,\\
+S(N)&=S_f
+\end{align}$$
+
+を得る. これをリッカチ方程式と言い, 条件$R>0$から$S(N), S(N-1), \cdots, S(1)$と順次解くことができる. 
+
+また, オイラー・ラグランジュ方程式の第1式と第3式から
+
+$$
+u(k) = -(R+B^TS(k+1)B)^{-1}B^TS(k+1)Ax(k)
+$$
+
+を得る. 以上により, 以下のステップで最適制御と状態遷移を求めることができる
+
+1. $S(N), S(N-1), \cdots, S(1)$をリッカチ方程式を解いて求める
+2. $u(k) = -(R+B^TS(k+1)B)^{-1}B^TS(k+1)Ax(k)$から, $x(0), S(1)$ を用いて$u(0)$を定める
+3. 状態方程式$x(k+1)=Ax(k)+Bu(k)$から$x(0), u(0)$を用いて$x(1)$を求める
+4. 以上を繰り返して, $u(1), x(1), u(2),\cdots$を順次求める
+
+## ベルマン方程式
+
+ベルマン方程式は
+
+$$\begin{aligned}
+V(x,k)
+&= \min_{u}\left(\dfrac12(x^TQx+u^TRu)+ V(f(x,u,k), k+1)\right), \quad & x\in \mathbf{R}^n, k=0,\cdots N-1,\\
+V(x,N) 
+&= \dfrac12 x^TS_fx, \quad & x\in \mathbf{R}^n
+\end{aligned}$$
+
+となる. 発見的に$V(x,k)=\dfrac12 x^TS(k)x$を代入すると, ベルマン方程式の右辺の min の内部を$u$について平方完成することにより, 
+
+$$\begin{aligned}
+\dfrac12 x^TS(k)x
+&= \dfrac12 x^T\left\{
+    Q+A^TS(k+1)A\right.\\
+    &\left.\qquad \qquad - A^TS(k+1)B(R+B^TS(k+1)B)^{-1}B^TS(k+1)A
+    \right\}x
+\end{aligned}$$
+
+を得る. 任意の$x$についてこれが成り立つには,
+
+$$\begin{align}
+S(k)
+&=Q+A^TS(k+1)A\\
+&\quad - A^TS(k+1)B(R+B^TS(k+1)B)^{-1}B^TS(k+1)A\\
+\end{align}$$
+
+を得る. これはリッカチ方程式である.
+ところで$u$についての平方完成から, 値関数の min を実現する optimizer $u$ は
+
+$$
+u = -(R+B^TS(k+1)B)^{-1}B^TS(k+1)Ax
+$$
+
+により与えられる.
+
+以上により, 離散LQ制御問題においては, オイラー・ラグランジュ方程式及びベルマン方程式はリッカチ方程式を経由して解くことができ, どちらも同じ最適制御を与える.
 
 # 他の問題設定
