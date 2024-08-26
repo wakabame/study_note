@@ -20,16 +20,19 @@ GitHub Actions でのCI
 
 ## 導入方法
 
-Rye のインストール <https://rye.astral.sh/guide/installation/>
-
 ```sh
+# Rye のインストール <https://rye.astral.sh/guide/installation/>
 sh ./setup-rye.sh
+# pre-commit 導入
+rye run pre-commit install
 ```
 
 ## 開発環境でのプレビュー
 
 ```sh
 . .venv/bin/activate
+# notebook は保存するだけでは反映されてない
+find notebook/ -name "*.ipynb" | xargs -I {} basename {} .ipynb | xargs -I {} quarto convert "notebook/{}.ipynb" --output "docs/notebook/{}.qmd"
 quarto preview docs
 # localhost にプレビューが作成されるので, ブラウザからアクセスする
 ```
