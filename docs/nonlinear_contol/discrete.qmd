@@ -70,11 +70,11 @@ d\bar{J}((x,u);(y,v))
 と表せる. これにより, 停留条件として以下のオイラー・ラグランジュ方程式が得られる
 
 $$\begin{aligned}
-x(k+1) = f(x(k), u(k), k),
-\quad x(0)=x_0, \\
-\lambda(k) = \left(\dfrac{\partial H}{\partial x}\right)^T (x(k), u(k), \lambda(k+1), k), 
-\quad \lambda(N) =  \left(\dfrac{\partial \varphi}{\partial x}\right)^T (x(N)), \\
-\dfrac{\partial H}{\partial u}(x(k), u(k), \lambda(k+1), k)=0.
+&x(k+1) = f(x(k), u(k), k),
+\quad &x(0)=x_0, \\
+&\lambda(k) = \left(\dfrac{\partial H}{\partial x}\right)^T (x(k), u(k), \lambda(k+1), k),
+\quad &\lambda(N) =  \left(\dfrac{\partial \varphi}{\partial x}\right)^T (x(N)), \\
+&\dfrac{\partial H}{\partial u}(x(k), u(k), \lambda(k+1), k)=0.
 \end{aligned}$$
 
 ここで, ハミルトニアンの定義から状態方程式は
