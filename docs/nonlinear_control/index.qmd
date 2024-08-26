@@ -9,7 +9,7 @@ date-modified: 2024-08-25
 listing:
   contents:
     - "./*.qmd"
-    - "../notebook/nonlinear_contol/*.qmd"
+    - "../notebook/nonlinear_control/*.qmd"
   sort: "chapter"
   type: table
   fields: [chapter, title, date]

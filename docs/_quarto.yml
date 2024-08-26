@@ -32,11 +32,11 @@ website:
       contents:
         - index.qmd
         - section: "非線形最適制御入門"
-          href: "nonlinear_contol/index.html"
+          href: "nonlinear_control/index.html"
           contents:
-            - "nonlinear_contol/discrete.qmd"
-            - "notebook/nonlinear_contol/descrete_linear_quadratic.qmd"
-            - "nonlinear_contol/discrete_and_continuous.qmd"
+            - "nonlinear_control/discrete.qmd"
+            - "notebook/nonlinear_control/descrete_linear_quadratic.qmd"
+            - "nonlinear_control/discrete_and_continuous.qmd"
         # - section: "Function Reference"
         #   contents: "api/*"
         # - section: "Notebooks"

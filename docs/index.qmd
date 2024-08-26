@@ -6,7 +6,7 @@ format:
 jupyter: python3
 listing:
   contents: 
-    - "nonlinear_contol/index.qmd"
+    - "nonlinear_control/index.qmd"
   sort: "date desc"
   type: table
   fields: [title, date, date-modified]
