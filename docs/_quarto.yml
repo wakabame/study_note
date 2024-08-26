@@ -35,11 +35,12 @@ website:
           href: "nonlinear_contol/index.html"
           contents:
             - "nonlinear_contol/discrete.qmd"
+            - "notebook/nonlinear_contol/descrete_linear_quadratic.qmd"
             - "nonlinear_contol/discrete_and_continuous.qmd"
         # - section: "Function Reference"
         #   contents: "api/*"
-        - section: "Notebooks"
-          contents: "notebook/*"
+        # - section: "Notebooks"
+        #   contents: "notebook/*"
 
 format:
   html:
