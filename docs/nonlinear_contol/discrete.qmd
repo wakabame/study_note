@@ -259,7 +259,7 @@ $$ x(k+1) = Ax(k) + B u(k)$$
 を仮定し, 評価関数は次の二次形式で与えられるものとする
 
 $$
-J=\dfrac12 x^T S_fx(N) + \sum_{k=1}^{N-1}\dfrac12\left(x^T(k)Qx(k) + u^T(k)Ru(k)\right).
+J=\dfrac12 x^T(N) S_fx(N) + \sum_{k=1}^{N-1}\dfrac12\left(x^T(k)Qx(k) + u^T(k)Ru(k)\right).
 $$
 
 ただし簡単のため $S_f, Q, R$は対称行列とし, 特に$R$は正定値とする. 
