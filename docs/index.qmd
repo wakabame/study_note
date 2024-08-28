@@ -1,8 +1,5 @@
 ---
 title: "トップページ"
-format:
-  html:
-    code-fold: true
 jupyter: python3
 listing:
   contents: 

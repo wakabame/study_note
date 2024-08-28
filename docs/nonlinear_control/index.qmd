@@ -1,8 +1,5 @@
 ---
 title: "非線形最適制御入門"
-format:
-  html:
-    code-fold: true
 jupyter: python3
 date: 2024-08-23
 date-modified: 2024-08-25

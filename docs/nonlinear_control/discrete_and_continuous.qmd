@@ -1,8 +1,5 @@
 ---
 title: "離散と連続の対応関係"
-format:
-  html:
-    code-fold: true
 jupyter: python3
 date: 2024-08-23
 date-modified: 2024-08-23

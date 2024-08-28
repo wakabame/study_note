@@ -1,8 +1,5 @@
 ---
 title: "多変数関数の二次近似"
-format:
-  html:
-    code-fold: true
 jupyter: python3
 date: 2024-08-25
 date-modified: 2024-08-25
