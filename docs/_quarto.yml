@@ -36,6 +36,7 @@ website:
           contents:
             - "nonlinear_control/discrete.qmd"
             - "notebook/nonlinear_control/descrete_linear_quadratic.qmd"
+            - "notebook/nonlinear_control/descrete_linear_quadratic_final.qmd"
             - "nonlinear_control/discrete_and_continuous.qmd"
         # - section: "Function Reference"
         #   contents: "api/*"
