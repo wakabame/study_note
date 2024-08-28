@@ -32,7 +32,11 @@ rye run pre-commit install
 ```sh
 . .venv/bin/activate
 # notebook は保存するだけでは反映されてない
-find notebook/ -name "*.ipynb" | xargs -I {} basename {} .ipynb | xargs -I {} quarto convert "notebook/{}.ipynb" --output "docs/notebook/{}.qmd"
+find notebook/ -name "*.ipynb" | while read file; do
+  output_file=$(echo "$file" | sed 's|notebook/|docs/notebook/|; s|.ipynb$|.qmd|')
+  mkdir -p $(dirname "$output_file")
+  quarto convert "$file" --output "$output_file"
+done
 quarto preview docs
 # localhost にプレビューが作成されるので, ブラウザからアクセスする
 ```
