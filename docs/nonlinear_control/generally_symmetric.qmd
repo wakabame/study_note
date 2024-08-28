@@ -1,5 +1,5 @@
 ---
-title: "二次形式は実対称行列を用いて表せる"
+title: "二次形式は対称行列を用いて表せる"
 jupyter: python3
 date: 2024-08-25
 date-modified: 2024-08-25
@@ -38,10 +38,26 @@ $$
 
 ## 二次形式の微分
 
-$f(x)=x^T Ax$ について, その微分は
+$A$が対称行列のとき, $f(x)=x^T Ax$について, その微分は
 
 $$
 \dfrac{\partial f}{\partial x} = 2Ax
 $$
 
-となる. ここで, 左辺の微分は多変数関数の勾配を表す.
+となる. ここで, 左辺の微分は勾配を表す.
+
+また, $A$が一般の正方行列のときは
+
+$$
+\dfrac{\partial f}{\partial x} = (A+A^T)x
+$$
+
+が成り立つ. このことは, $k=1,\cdots , n$に対して
+
+$$\begin{aligned}
+x^TAx
+&= \sum_{i,j=1}^n a_{ij} x_ix_j\\
+&= \sum_{i,j\neq k} a_{ij} x_ix_j+\sum_{i\neq k} a_{ik} x_ix_k+\sum_{j\neq k} a_{kj} x_jx_k+ a_{kk} x_k^2
+\end{aligned}$$
+
+を$x_k$について偏微分することで分かる
