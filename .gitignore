@@ -15,3 +15,6 @@ wheels/
 /docs/api/
 /docs/objects.json
 /docs/notebook/**/*.qmd
+
+*.png
+*.gif
