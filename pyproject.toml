@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "numpy>=2.0.1",
     "matplotlib>=3.9.1",
+    "jax>=0.4.31",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"

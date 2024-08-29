@@ -16,14 +16,28 @@ cycler==0.12.1
     # via matplotlib
 fonttools==4.53.1
     # via matplotlib
+jax==0.4.31
+    # via study-note
+jaxlib==0.4.31
+    # via jax
 kiwisolver==1.4.5
     # via matplotlib
 matplotlib==3.9.1
     # via study-note
+ml-dtypes==0.4.0
+    # via jax
+    # via jaxlib
 numpy==2.0.1
     # via contourpy
+    # via jax
+    # via jaxlib
     # via matplotlib
+    # via ml-dtypes
+    # via opt-einsum
+    # via scipy
     # via study-note
+opt-einsum==3.3.0
+    # via jax
 packaging==24.1
     # via matplotlib
 pillow==10.4.0
@@ -32,5 +46,8 @@ pyparsing==3.1.2
     # via matplotlib
 python-dateutil==2.9.0.post0
     # via matplotlib
+scipy==1.14.1
+    # via jax
+    # via jaxlib
 six==1.16.0
     # via python-dateutil
