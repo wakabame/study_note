@@ -2,7 +2,7 @@
 title: "離散時間システムの最適制御"
 jupyter: python3
 date: 2024-08-23
-date-modified: 2024-08-26
+date-modified: 2024-08-31
 chapter: 3
 ---
 
@@ -278,7 +278,7 @@ $$\begin{aligned}
 $$\begin{aligned}
 S(k)
 &=Q+A^TS(k+1)A\\
-&\quad - A^TS(k+1)B(R+B^TS(k+1)B)^{-1}B^TS(k+1)A,\quad k=1,cdots, N-1,\\
+&\quad - A^TS(k+1)B(R+B^TS(k+1)B)^{-1}B^TS(k+1)A,\quad k=1,\cdots, N-1,\\
 S(N)&=S_f
 \end{aligned}$$
 
@@ -303,12 +303,37 @@ $$
 
 $$\begin{aligned}
 V(x,k)
-&= \min_{u}\left(\dfrac12(x^TQx+u^TRu)+ V(f(x,u,k), k+1)\right), \quad & x\in \mathbf{R}^n, k=0,\cdots N-1,\\
+&= \min_{u}\left(\dfrac12(x^TQx+u^TRu)+ V(Ax ＋Bu, k＋１)\right), \quad & x\in \mathbf{R}^n, k=0,\cdots N-1,\\
 V(x,N) 
 &= \dfrac12 x^TS_fx, \quad & x\in \mathbf{R}^n
 \end{aligned}$$
 
-となる. 発見的に$V(x,k)=\dfrac12 x^TS(k)x$を代入すると, ベルマン方程式の右辺の min の内部を$u$について平方完成することにより, 
+となる. 発見的に対称行列$S(k)$とおいて$V(x,k)=\dfrac12 x^TS(k)x$を代入すると, ベルマン方程式の右辺の min の内部を$u$について平方完成することにより, 
+
+$$\begin{aligned}
+&\dfrac12(x^TQx+u^TRu)+ \dfrac{1}{2}(Ax+Bu)^TS(k+1)(Ax+Bu)\\
+&\quad = \dfrac12(
+    u^T(R+B^TS(k+1)B)u 
+    + 2u^TB^TS(k+1)Ax
+    + x^T(Q+A^TS(k+1)A)x)\\
+&\quad = \dfrac12\bigg(
+    (u+B^TS(k+1)Ax)(R+B^TS(k+1)B)(u+B^TS(k+1)Ax)\\
+    &\qquad \quad +x^T(Q+A^TS(k+1)A-A^TS(k+1)B(R+B^TS(k+1)B)^{-1}B^TS(k+1)A)x
+\bigg).
+\end{aligned}$$
+
+ただしここで平方完成は
+
+$$
+u^TAu+2u^Tv = (u+v)^TA(u+v) - v^TA^{-1}v
+$$
+
+を用いた. 右辺より, 値関数の min を実現する optimizer $u$ は
+$$
+u = -(R+B^TS(k+1)B)^{-1}B^TS(k+1)Ax
+$$
+
+であり, このとき
 
 $$\begin{aligned}
 \dfrac12 x^TS(k)x
@@ -327,13 +352,6 @@ S(k)
 \end{aligned}$$
 
 を得る. これはリッカチ方程式である.
-ところで$u$についての平方完成から, 値関数の min を実現する optimizer $u$ は
-
-$$
-u = -(R+B^TS(k+1)B)^{-1}B^TS(k+1)Ax
-$$
-
-により与えられる.
 
 以上により, 離散LQ制御問題においては, オイラー・ラグランジュ方程式及びベルマン方程式はリッカチ方程式を経由して解くことができ, どちらも同じ最適制御を与える.
 
