@@ -24,7 +24,7 @@ J(x) = \int_0^T L(x(t), \dot{x}(t), t)\, dt ,\quad x \in X
 $$
 
 により定める. 線形空間$X$における微小変化を計算する.
-$y\in C^1([0,T])$, $y(0)=0$, $h>0$に対して,
+$y\in C^1([0,T])$, $y(0)=0$, $h\in \mathbf{R}$に対して,
 
 $$\begin{aligned}
 &J(x+hy) - J(x)\\
@@ -41,4 +41,65 @@ $$\begin{aligned}
 &\qquad +o(|h|^2), \quad \text{as } h\rightarrow 0
 \end{aligned}$$
 
-が得られる.
+が得られる. 停留条件として第一変分と呼ばれる$h$の一次の項$\delta J(x;y)=0$が任意の$y\in X$について成り立つことが得られる.
+また, 部分積分により
+
+$$\begin{aligned}
+\delta J(x;y)
+&= \int_0^T \left(
+    \dfrac{\partial L}{\partial x}(x(t),\dot{x}(t),t)y(t)
+    + \dfrac{\partial L}{\partial p}(x(t),\dot{x}(t),t)\dot{y}(t)
+    \right)\\
+&= \int_0^T \left(
+    -\dfrac{d}{dt}\left(\dfrac{\partial L }{\partial p}(x(t),\dot{x}(t),t)y(t)\right)
+    +\dfrac{\partial L}{\partial x}(x(t),\dot{x}(t),t)y(t)
+    \right)\\
+&\quad + \dfrac{\partial L }{\partial p}(x(T),\dot{x}(T),T)y(T)
+    - \dfrac{\partial L }{\partial p}(x(0),\dot{x}(0),0)y(0).
+\end{aligned}$$
+
+だから, 変分法の基本補題により停留条件は以下のように表せられる
+
+$$\begin{aligned}
+&-\dfrac{d}{dt}\left(\dfrac{\partial L }{\partial p}(x(t),\dot{x}(t),t)\right)
+    +\dfrac{\partial L}{\partial x}(x(t),\dot{x}(t),t),\quad t\in(0,T)\\
+&\dfrac{\partial L }{\partial p}(x(T),\dot{x}(T),T)=0
+\end{aligned}$$
+
+上記の方程式をオイラー・ラグランジュ方程式と呼ぶ.
+
+### 問題設定を変えた場合
+
+#### 終端固定$x(T)=x_N$の場合
+
+変分について$y(N)=0$が成り立つのでオイラー・ラグランジュ方程式の第2式は現れない.
+
+#### コスト関数が第3変数$t$について依存しないとき
+
+$L=L(x,p)$とかく. オイラー・ラグランジュ方程式の第1式から形式的に
+
+$$\begin{aligned}
+&\dfrac{d}{dt}\left(\dfrac{\partial L }{\partial p}(x(t),\dot{x}(t))\dot{x}(t) -L(x(t),\dot{x}(t))\right)\\
+&\quad = \dfrac{d}{dt}\left(\dfrac{\partial L }{\partial p}(x(t),\dot{x}(t))\right)\dot{x}(x) - \dfrac{\partial L }{\partial x}(x(t),\dot{x}(t))\dot{x}(t)\\
+&\quad = 0
+\end{aligned}$$
+
+が成り立つ. これより, ある実数$c$が存在して, 
+
+$$
+\dfrac{\partial L }{\partial p}(x(t),\dot{x}(t))\dot{x}(t) -L(x(t),\dot{x}(t))=c
+$$
+
+が成り立つことが停留条件となる.
+
+#### 拘束条件のある場合
+
+重要なので, 以下の節で述べる
+
+## 拘束条件付き変分問題
+
+### 各時刻での拘束条件
+
+### 積分拘束条件
+
+## 第二変分
