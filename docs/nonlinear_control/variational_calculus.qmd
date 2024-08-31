@@ -1,0 +1,44 @@
+---
+title: "変分法"
+jupyter: python3
+date: 2024-08-31
+date-modified: 2024-08-31
+chapter: 4
+---
+
+ステージコスト関数$L$は十分に滑らかなものとし, ダイナミクスは初期条件が与えられたものを考える.
+$L(x(t), \dot{x}(t), t)$について, 第二変数についての偏微分係数は
+
+$$
+\dfrac{\partial L}{\partial p}(x(t), \dot{x}(t), t)
+$$
+
+と書くことにする. 簡単のため, 終端コストは考えない.
+
+## 問題設定
+
+$T>0$, $X=\{ x\in C^1([0,T]) \mid x(0)=x_0\}$に対して, 汎関数$J$を
+
+$$
+J(x) = \int_0^T L(x(t), \dot{x}(t), t)\, dt ,\quad x \in X
+$$
+
+により定める. 線形空間$X$における微小変化を計算する.
+$y\in C^1([0,T])$, $y(0)=0$, $h>0$に対して,
+
+$$\begin{aligned}
+&J(x+hy) - J(x)\\
+&\quad = h\int_0^T \left(
+    \dfrac{\partial L}{\partial x}(x(t),\dot{x}(t),t)y(t)
+    + \dfrac{\partial L}{\partial p}(x(t),\dot{x}(t),t)\dot{y}(t)
+    \right)\,dt\\
+&\qquad + \dfrac{h^2}{2}\Bigg(
+    \dfrac{\partial^2 L}{\partial x^2}(x(t),\dot{x}(t),t)y(t)^2
+    + \dfrac{\partial^2 L}{\partial x\partial p}(x(t),\dot{x}(t),t)y(t)\dot{y}(t)\\
+&\qquad \quad + \dfrac{\partial^2 L}{\partial p \partial x}(x(t),\dot{x}(t),t)y(t)\dot{y}(t)
+    + \dfrac{\partial^2 L}{\partial x\partial p}(x(t),\dot{x}(t),t)\dot{y}(t)^2
+   \Bigg)\,dt\\
+&\qquad +o(|h|^2), \quad \text{as } h\rightarrow 0
+\end{aligned}$$
+
+が得られる.
