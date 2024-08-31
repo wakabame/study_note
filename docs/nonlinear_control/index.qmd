@@ -9,7 +9,7 @@ listing:
     - "../notebook/nonlinear_control/*.qmd"
   sort: "chapter"
   type: table
-  fields: [chapter, title, date]
+  fields: [chapter, date, title]
 ---
 
 モデル予測制御の理論的側面を学ぶために読み始めた.
