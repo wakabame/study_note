@@ -38,6 +38,7 @@ website:
             - "notebook/nonlinear_control/descrete_linear_quadratic.qmd"
             - "notebook/nonlinear_control/descrete_linear_quadratic_final.qmd"
             - "nonlinear_control/discrete_and_continuous.qmd"
+            - "nonlinear_control/variational_calculus.qmd"
         # - section: "Function Reference"
         #   contents: "api/*"
         # - section: "Notebooks"
