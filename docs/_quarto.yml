@@ -31,14 +31,16 @@ website:
       align: left
       contents:
         - index.qmd
-        - section: "非線形最適制御入門"
-          href: "nonlinear_control/index.html"
+        - section: "nonlinear_control/index.qmd"
           contents:
-            - "nonlinear_control/discrete.qmd"
-            - "notebook/nonlinear_control/descrete_linear_quadratic.qmd"
-            - "notebook/nonlinear_control/descrete_linear_quadratic_final.qmd"
+            - section: "nonlinear_control/discrete.qmd"
+              contents:
+                - "notebook/nonlinear_control/descrete_linear_quadratic.qmd"
+                - "notebook/nonlinear_control/descrete_linear_quadratic_final.qmd"
+            - section: "nonlinear_control/variational_calculus.qmd"
+              contents:
+                - "notebook/nonlinear_control/rachistochrone_curve.qmd"
             - "nonlinear_control/discrete_and_continuous.qmd"
-            - "nonlinear_control/variational_calculus.qmd"
         # - section: "Function Reference"
         #   contents: "api/*"
         # - section: "Notebooks"
