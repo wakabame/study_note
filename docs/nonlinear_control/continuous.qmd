@@ -1,0 +1,114 @@
+---
+title: "連続時間システムの最適制御"
+jupyter: python3
+date: 2024-09-03
+date-modified: 2024-09-03
+chapter: 5
+---
+
+記述をシンプルにするため, 変数の属する次元や添字の範囲は省略する.
+与えられる関数は適宜滑らかさを課す.
+ときどき思い出したように状態ベクトル $x$, 制御ベクトル $u$ の次元はそれぞれ $n,m$ であることを用いる.
+
+# 非線形連続時間システムの制御問題
+
+## 問題設定
+
+初期時刻を$t_0$, 終端時刻を$t_f$と表し, 時刻$t\in (t_0, t_f)$に対して, 以下の制御システムを考える;
+
+$$ \dot{x}(t) = f(x(t),u(t),t)$$
+
+ここで $x(t), u(t)$ はそれぞれ時刻$t\in (t_0, t_f)$におけるシステムの状態ベクトル, 制御入力ベクトルを表す.
+
+このシステムに対して, 初期状態 $x(0) = x_0$ が固定されたときの評価関数
+
+$$
+J(x, u) = \varphi(x(t_f)) + \int_{t_0}^{t_f} L(x(t), u(t), t)\,dt
+$$
+
+を最小化するような制御入力$\{u(t)\}_{t\in(t_0,t_f)}$を構成したい.
+
+## オイラーラグランジュ方程式の導出
+
+差分方程式を等式拘束条件とみなすと, 最小化問題のラグランジュ関数はラグランジュ乗数$\{\lambda(t)\}_{t\in(t_0,t_f)}$を用いて
+
+$$\begin{aligned}
+\bar{J}(x,u)
+&= \varphi(x(t_f))+ \int_{t_0}^{t_f}\big( L(x(t), u(t), t) +\lambda^T(t)(f(x(t),u(t),t)-\dot{x}(t))\big)\,dt\\
+&\quad + \varphi(x(t_f))+ \int_{t_0}^{t_f}\big( 
+    H(x(t), u(t), \lambda(t), t)-\lambda^T(t)\dot{x}(t)
+\big)
+\end{aligned}$$
+
+と表せる. ただしここに現れた関数 $H(x,u,\lambda,k) := L(x,u,k) +\lambda^Tf(x,u,k)$ をハミルトニアンという.
+
+初期条件 $x(0)=x_0$ が拘束されていることを念頭に置くと, 第一変分は
+
+$$\begin{aligned}
+d\bar{J}((x,u);(y,v))
+&= \left(\dfrac{\partial \varphi}{\partial x}(x(t_f))-\lambda^T(t_f)\right) y(t_f)\\
+&\quad +  \int_{t_0}^{t_f}\left(\dfrac{\partial H}{\partial x}(x(t),u(t),\lambda(t),t) - \lambda^T(t)\right)y(t)\,dt
++ \int_{t_0}^{t_f}\dfrac{\partial H}{\partial u}(x(t),u(t),\lambda(t),t) v(t)\,dt\\
+\end{aligned}$$
+
+と表せる. 変分法の基本補題により, 停留条件として以下のオイラー・ラグランジュ方程式が得られる
+
+$$\begin{aligned}
+&\dot{x}(t) = f(x(t), u(t), t),
+\quad &x(0)=x_0, \\
+&\lambda(t) = \left(\dfrac{\partial H}{\partial x}\right)^T (x(t), u(t), \lambda(t), t),
+\quad &\lambda(t_f) =  \left(\dfrac{\partial \varphi}{\partial x}\right)^T (x(t_f)), \\
+&\dfrac{\partial H}{\partial u}(x(t),u(t),\lambda(t),t)=0.
+\end{aligned}$$
+
+ここで, ハミルトニアンの定義から状態方程式は
+
+$$
+\dot{x}(t) = \left(\dfrac{\partial H}{\partial \lambda}\right)^T (x(t), u(t), \lambda(t), t)
+$$
+
+とも表せるため, 上で得られた状態方程式は解析力学での正準方程式と同等のものになっている.
+
+# LQ制御問題
+
+システムは次のような線形システム
+
+$$ \dot{x}(t) = A(t)x(t) + B(t) u(t)$$
+
+を仮定し, 評価関数は次の二次形式で与えられるものとする
+
+$$
+J=\dfrac12 x^T(t_f) S_fx(t_f) + \int_{t_0}^{t_f}\dfrac12\left(x^T(t)Q(t)x(t) + u^T(t)R(t)u(t)\right)\,dt.
+$$
+
+ただし簡単のため$S_f(t), Q(t), R(t)$は対称行列とし, 特に$R(t)$は正定値とする. 
+
+## オイラー・ラグランジュ方程式
+
+以下では変数$(t)$をしばしば省略する. 
+ハミルトニアンは時間には依存せず$H(x,u,\lambda) = \frac12(x^TQx + u^TRu)+ \lambda^T(Ax+Bu)$となるのでオイラー・ラグランジュ方程式は
+
+$$\begin{aligned}
+&\dot{x}(t) = Ax(t) + Bu(t),
+\quad x(0)=x_0, \\
+&\dot{\lambda}(t) =-Qx(t)-A^T \lambda(t) , 
+\quad \lambda(t_f) =  S_f (x(t_f)), \\
+&u^T(t)R + \lambda^T(t)B=0.
+\end{aligned}$$
+
+第3式から$u(t)=-R^{-1}B^T\lambda(t)$が直ちに分かる. 行列$S(t)$を用いて$\lambda(t)=S(t)x(t)$と表せると仮定して代入すると, $S(t)$についての常微分方程式
+
+$$\left\{\begin{aligned}
+&\dot{S}(t)+A^TS+SA-SBR^{-1}B^TS+Q=0,\\
+&S(t_f)=S_f
+\end{aligned}\right.$$
+
+を得る. これをリッカチ微分方程式といい, $S_f$が対称行列であることから各$S(t)$もまた対称行列として得られる. 
+さらに
+
+$$\left\{\begin{aligned}
+&\dot{x}(t)=(A-BR^{-1}B^TS(t))x(t),\\
+&x(t_0)=x_0
+\end{aligned}\right.$$
+
+により状態ベクトルが得られ, $\lambda(t)=S(t)x(t)$, $u(t)=-R^{-1}B^T\lambda(t)$により随伴ベクトルも最適制御も得られる.
