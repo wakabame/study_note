@@ -14,14 +14,32 @@ contourpy==1.2.1
     # via matplotlib
 cycler==0.12.1
     # via matplotlib
+diffrax==0.6.0
+    # via study-note
+equinox==0.11.5
+    # via diffrax
+    # via lineax
+    # via optimistix
 fonttools==4.53.1
     # via matplotlib
 jax==0.4.31
+    # via diffrax
+    # via equinox
+    # via lineax
+    # via optimistix
     # via study-note
 jaxlib==0.4.31
     # via jax
+jaxtyping==0.2.34
+    # via diffrax
+    # via equinox
+    # via lineax
+    # via optimistix
 kiwisolver==1.4.5
     # via matplotlib
+lineax==0.0.5
+    # via diffrax
+    # via optimistix
 matplotlib==3.9.1
     # via study-note
 ml-dtypes==0.4.0
@@ -38,6 +56,8 @@ numpy==2.0.1
     # via study-note
 opt-einsum==3.3.0
     # via jax
+optimistix==0.0.7
+    # via diffrax
 packaging==24.1
     # via matplotlib
 pillow==10.4.0
@@ -51,3 +71,11 @@ scipy==1.14.1
     # via jaxlib
 six==1.16.0
     # via python-dateutil
+typeguard==2.13.3
+    # via diffrax
+    # via jaxtyping
+typing-extensions==4.12.2
+    # via diffrax
+    # via equinox
+    # via lineax
+    # via optimistix
