@@ -40,7 +40,9 @@ website:
             - section: "nonlinear_control/variational_calculus.qmd"
               contents:
                 - "nonlinear_control/notebook/rachistochrone_curve.qmd"
-            - "nonlinear_control/continuous.qmd"
+            - section: "nonlinear_control/continuous.qmd"
+              contents:
+                - "nonlinear_control/notebook/linear_quadratic.qmd"
             - "nonlinear_control/discrete_and_continuous.qmd"
         # - section: "Function Reference"
         #   contents: "api/*"
