@@ -10,6 +10,7 @@ dependencies = [
     "matplotlib>=3.9.1",
     "jax>=0.4.31",
     "diffrax>=0.6.0",
+    "sympy>=1.13.2",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"
