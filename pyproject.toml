@@ -11,7 +11,6 @@ dependencies = [
     "jax>=0.4.31",
     "diffrax>=0.6.0",
     "sympy>=1.13.2",
-    "jupyter-cache>=1.0.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"

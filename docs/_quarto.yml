@@ -4,9 +4,6 @@ project:
   render:
     - "*.qmd"
 
-execute:
-  cache: true
-
 metadata-files:
   - api/_sidebar.yml
 
