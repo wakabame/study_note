@@ -75,6 +75,8 @@ six==1.16.0
     # via python-dateutil
 sympy==1.13.2
     # via study-note
+tqdm==4.66.5
+    # via study-note
 typeguard==2.13.3
     # via diffrax
     # via jaxtyping
