@@ -56,7 +56,7 @@ d\bar{J}((x,u);(y,v))
 $$\begin{aligned}
 &\dot{x}(t) = f(x(t), u(t), t),
 \quad &x(0)=x_0, \\
-&\lambda(t) = \left(\dfrac{\partial H}{\partial x}\right)^T (x(t), u(t), \lambda(t), t),
+&\dot{\lambda}(t) = -\left(\dfrac{\partial H}{\partial x}\right)^T (x(t), u(t), \lambda(t), t),
 \quad &\lambda(t_f) =  \left(\dfrac{\partial \varphi}{\partial x}\right)^T (x(t_f)), \\
 &\dfrac{\partial H}{\partial u}(x(t),u(t),\lambda(t),t)=0.
 \end{aligned}$$
