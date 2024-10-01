@@ -15,6 +15,7 @@ def sample_add_int(x: int, y: int) -> int:
     """
     return x + y
 
+
 def sample_product_int(x: int, y: int) -> int:
     """２つの整数の積を返します
 
