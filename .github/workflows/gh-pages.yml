@@ -24,7 +24,6 @@ jobs:
         if: ${{ steps.cache_dependency_python.outputs.cache-hit != 'true' }}
         run: |
           uv sync
-          uv venv
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -37,6 +36,7 @@ jobs:
             mkdir -p $(dirname "$output_file")
             quarto convert "$file" --output "$output_file"
           done
+          uv venv
           quarto render docs
       - uses: actions/upload-pages-artifact@v3
         with:
