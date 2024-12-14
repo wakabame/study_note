@@ -38,6 +38,7 @@ jobs:
           done
           uv venv
           source .venv/bin/activate
+          export QUARTO_PYTHON=$(pwd)/.venv/bin/python
           quarto render docs
       - uses: actions/upload-pages-artifact@v3
         with:
