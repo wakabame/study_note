@@ -37,6 +37,7 @@ jobs:
             quarto convert "$file" --output "$output_file"
           done
           uv venv
+          source .venv/bin/activate
           quarto render docs
       - uses: actions/upload-pages-artifact@v3
         with:
