@@ -2052,7 +2052,6 @@ dependencies = [
     { name = "jax" },
     { name = "matplotlib" },
     { name = "numpy" },
-    { name = "pyyaml" },
     { name = "sympy" },
     { name = "tqdm" },
 ]
@@ -2073,7 +2072,6 @@ requires-dist = [
     { name = "jax", specifier = ">=0.4.31" },
     { name = "matplotlib", specifier = ">=3.9.1" },
     { name = "numpy", specifier = ">=2.0.1" },
-    { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "sympy", specifier = ">=1.13.2" },
     { name = "tqdm", specifier = ">=4.66.5" },
 ]
