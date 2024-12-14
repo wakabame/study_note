@@ -21,10 +21,10 @@ GitHub Actions でのCI
 ## 導入方法
 
 ```sh
-# Rye のインストール <https://rye.astral.sh/guide/installation/>
-sh ./setup-rye.sh
+# uv のインストール <https://docs.astral.sh/uv/getting-started/installation/>
+sh ./setup-uv.sh
 # pre-commit 導入
-rye run pre-commit install
+uv run pre-commit install
 ```
 
 ## 開発環境でのプレビュー
