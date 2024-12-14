@@ -36,8 +36,6 @@ jobs:
             mkdir -p $(dirname "$output_file")
             quarto convert "$file" --output "$output_file"
           done
-          uv venv
-          source .venv/bin/activate
           export QUARTO_PYTHON=$(pwd)/.venv/bin/python
           quarto render docs
       - uses: actions/upload-pages-artifact@v3
