@@ -12,6 +12,7 @@ dependencies = [
     "diffrax>=0.6.0",
     "sympy>=1.13.2",
     "tqdm>=4.66.5",
+    "pyyaml>=6.0.2",
 ]
 requires-python = ">=3.12.3"
 readme = "README.md"
