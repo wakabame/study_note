@@ -24,6 +24,7 @@ jobs:
         if: ${{ steps.cache_dependency_python.outputs.cache-hit != 'true' }}
         run: |
           uv sync
+          uv venv
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
