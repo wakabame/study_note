@@ -44,6 +44,9 @@ website:
               contents:
                 - "nonlinear_control/notebook/linear_quadratic.qmd"
             - "nonlinear_control/discrete_and_continuous.qmd"
+        - section: "optimization_on_manifold/index.qmd"
+          contents:
+            - "optimization_on_manifold/overview_of_optimization_on_manifold.qmd"
         # - section: "Function Reference"
         #   contents: "api/*"
         # - section: "Notebooks"

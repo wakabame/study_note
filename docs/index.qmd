@@ -4,7 +4,8 @@ jupyter: python3
 listing:
   contents: 
     - "nonlinear_control/index.qmd"
-  sort: "date desc"
+    - "optimization_on_manifold/index.qmd"
+  # sort: "date desc"
   type: table
   fields: [title, date, date-modified]
 ---

@@ -1,0 +1,16 @@
+---
+title: "多様体上の最適化理論"
+date: 2025-02-07
+date-modified: 2025-02-07
+listing:
+  contents:
+    - "./*.qmd"
+    - "./notebook/*.qmd"
+  sort: "chapter"
+  type: table
+  fields: [chapter, date, title]
+---
+
+* 第一部 最適化理論からの準備
+* 第二部 多様体からの準備
+* 第三部 多様体上の最適化
